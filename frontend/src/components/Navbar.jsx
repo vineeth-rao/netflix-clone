@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {LogOut, Menu, Search} from 'lucide-react';
 import { useAuthStore } from "../store/authUser";
+import { UseContentStore } from "../store/content";
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const {user, logout} = useAuthStore();
+  const {setContentType} = UseContentStore();
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -16,10 +18,10 @@ const Navbar = () => {
 
       {/* desktop menu */}
       <div className="hidden sm:flex gap-5 items-center">
-        <Link to={"/"} className="hover:underline">
+        <Link to={"/"} className="hover:underline" onClick={()=>setContentType("movie")}>
           Movies
         </Link>
-        <Link to={"/"} className="hover:underline">
+        <Link to={"/"} className="hover:underline" onClick={()=>setContentType("tv")}>
           TV Shows
         </Link>
         <Link to={"/"} className="hover:underline">
@@ -44,13 +46,13 @@ const Navbar = () => {
         <div className={`sm:hidden absolute top-20 left-2 right-2 bg-black p-4 z-40 transition-all duration-300 ease-in-out border rounded border-gray-500 ${
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0 pointer-events-none"
           }`}>
-          <Link to={"/movies"} className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link to={"/"} className="block hover:underline p-2" onClick={()=>{setContentType("movie");toggleMobileMenu()}}>
             Movies
           </Link>
-          <Link to={"/tvShows"} className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link to={"/"} className="block hover:underline p-2" onClick={()=>{setContentType("tv");toggleMobileMenu()}}>
             TV Shows
           </Link>
-          <Link to={"/searchHistory"} className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link to={"/"} className="block hover:underline p-2" onClick={()=>{toggleMobileMenu()}}>
             Search History
           </Link>
         </div>
