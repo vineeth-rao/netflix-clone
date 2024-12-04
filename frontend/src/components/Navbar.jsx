@@ -32,7 +32,7 @@ const Navbar = () => {
         >
           TV Shows
         </Link>
-        <Link to={"/"} className="hover:underline">
+        <Link to={"/history"} className="hover:underline">
           Search History
         </Link>
       </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
           TV Shows
         </Link>
         <Link
-          to={"/"}
+          to={"/history"}
           className="block hover:underline p-2"
           onClick={() => {
             toggleMobileMenu();

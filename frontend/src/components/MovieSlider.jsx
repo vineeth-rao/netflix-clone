@@ -17,7 +17,7 @@ const MovieSlider = ({ category }) => {
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
-        left: -sliderRef.current.offsetWidth *0.90,
+        left: -sliderRef.current.offsetWidth * 0.9,
         behavior: "smooth",
       });
     }
@@ -26,7 +26,7 @@ const MovieSlider = ({ category }) => {
   const scrollRight = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
-        left: sliderRef.current.offsetWidth*0.90,
+        left: sliderRef.current.offsetWidth * 0.9,
         behavior: "smooth",
       });
     }
@@ -65,23 +65,29 @@ const MovieSlider = ({ category }) => {
         </>
       )}
 
-      <div className="flex space-x-4 overflow-x-scroll scrollbar-hide" ref={sliderRef}>
-        {content.map((item) => (
-          <Link
-            to={`/watch/${item.id}`}
-            className="min-w-[250px] relative group"
-            key={item.id}
-          >
-            <div className="rounded-lg overflow-hidden">
-              <img
-                src={`${SMALL_IMG_BASE_URL + item.backdrop_path}`}
-                alt={item.title}
-                className="transition-transform duration-300 ease-in-out group-hover:scale-125"
-              />
-            </div>
-            <p className="mt-2 text-center">{item.title || item.name}</p>
-          </Link>
-        ))}
+      <div
+        className="flex space-x-4 overflow-x-scroll scrollbar-hide"
+        ref={sliderRef}
+      >
+        {content.map(
+          (item) =>
+            item.backdrop_path && (
+              <Link
+                to={`/watch/${item.id}`}
+                className="min-w-[250px] relative group"
+                key={item.id}
+              >
+                <div className="rounded-lg overflow-hidden">
+                  <img
+                    src={`${SMALL_IMG_BASE_URL + item.backdrop_path}`}
+                    alt={item.title}
+                    className="transition-transform duration-300 ease-in-out group-hover:scale-125"
+                  />
+                </div>
+                <p className="mt-2 text-center">{item.title || item.name}</p>
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

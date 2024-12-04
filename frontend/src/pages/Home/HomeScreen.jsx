@@ -10,16 +10,18 @@ import {
 import { UseContentStore } from "../../store/content";
 import MovieSlider from "../../components/MovieSlider";
 import { useState } from "react";
+import ShimmerEffect from "../../components/ShimmerEffect";
 
 function HomeScreen() {
   const { trendingContent } = useGetTrendingContent();
   const { contentType } = UseContentStore();
   const [imageLoading, setImageLoading] = useState(true);
+  
   if (!trendingContent) {
     return (
       <div className="h-screen text-white relative">
         <Navbar />
-        <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
+        <ShimmerEffect />
       </div>
     );
   }
@@ -27,9 +29,7 @@ function HomeScreen() {
     <>
       <div className="relative h-screen text-white">
         <Navbar />
-        {imageLoading && (
-          <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
-        )}
+        {imageLoading && <ShimmerEffect />}
 
         {/* Hero image */}
         <img
@@ -47,19 +47,20 @@ function HomeScreen() {
 
         {/* Title */}
         <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-8 md:px-16 lg:px-32">
-          <div className="bg-gradient-to-b from-black via-transparent to-transparent
+          <div
+            className="bg-gradient-to-b from-black via-transparent to-transparent
                     absolute w-full h-full top-0 left-0 -z-10 opacity-20 "
-                    />
+          />
 
           <div className="max-w-2xl">
-            <h1 className="mt-4 text-6xl font-extrabold text-balance">
+            <h1 className="mt-4 text-5xl md:text-6xl font-extrabold text-balance">
               {trendingContent?.title || trendingContent?.name}
             </h1>
             <p className="text-lg mt-2">
               {trendingContent?.release_date?.split("-")[0] ||
                 trendingContent?.first_air_date?.split("-")[0]}{" "}
               • {trendingContent?.adult ? "18+" : "PG-13"} •{" "}
-              {trendingContent?.media_type}
+              {trendingContent?.media_type == "movie"? "Movie": "TV Show"}
             </p>
             <p className="text-lg mt-4">
               {trendingContent?.overview.length > 200
@@ -69,7 +70,7 @@ function HomeScreen() {
           </div>
           <div className="flex mt-8">
             <Link
-              to={`watch/${trendingContent.id}`}
+              to={`/watch/${trendingContent.id}`}
               className="bg-white hover:bg-white/80 font-bold rounded text-black py-2 px-4 mr-4 text-center flex items-center"
             >
               <Play className="fill-black mr-2 size-6" /> Play

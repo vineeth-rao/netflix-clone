@@ -20,7 +20,7 @@ const useGetTrendingContent = () => {
     // For changing trending content every 10 seconds uncomment below
     // const interval = setInterval(() => {
     //   getTrendingContent();
-    // }, 10000); // 10000 ms = 10 seconds
+    // }, 15000); // 10000 ms = 10 seconds
 
     // // Cleanup the interval when component unmounts
     // return () => clearInterval(interval);
