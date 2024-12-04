@@ -14,22 +14,38 @@ export async function searchContentByType(req, res) {
     if (data.results?.length === 0) {
       return res.status(404).send(null);
     }
-    console.log(req.user);
-    await User.findByIdAndUpdate(req.user._id, {
-      $push: {
-        searchHistory: {
-          id: data.results[0].id,
-          image:
-            type == "person"
-              ? data.results[0].profile_path
-              : data.results[0].poster_path,
-          title:
-            type == "movie" ? data.results[0].title: data.results[0].name,
-          searchType: type,
-          createdOn: new Date(),
-        },
-      },
+    const checkHistory = await User.findOne({
+      _id: req.user._id,
+      "searchHistory.id": data.results[0].id, // Look for the specific ID in the searchHistory array
     });
+    if (checkHistory) {
+      await User.updateOne(
+        {
+          _id: req.user._id,
+          "searchHistory.id": data.results[0].id, // Match the specific entry in the array
+        },
+        {
+          $set: { "searchHistory.$.lastSearchDate": new Date() }, // Update the `searchedAt` field of the matched entry
+        }
+      );
+    } else {
+      await User.findByIdAndUpdate(req.user._id, {
+        $push: {
+          searchHistory: {
+            id: data.results[0].id,
+            image:
+              type == "person"
+                ? data.results[0].profile_path
+                : data.results[0].poster_path,
+            title:
+              type == "movie" ? data.results[0].title : data.results[0].name,
+            searchType: type,
+            createdOn: new Date(),
+            lastSearchDate: new Date(),
+          },
+        },
+      });
+    }
     return res.status(200).json({ success: true, content: data.results });
   } catch (error) {
     console.log("Error in search controller:" + error.message);

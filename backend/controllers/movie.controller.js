@@ -3,7 +3,7 @@ import { fetchFromTMDB } from "../services/tmdb.service.js";
 export async function getTrendingMovies(req, res) {
   try {
     const { type } = req.params;
-    const url = `https://api.themoviedb.org/3/trending/${type}/day?language=en-US`;
+    const url = `https://api.themoviedb.org/3/trending/${type}/day?language=en-US&include_adult=false`;
     const data = await fetchFromTMDB(url);
     console.log(data);
     const randomTrendingMovie =
@@ -18,9 +18,9 @@ export async function getTrendingMovies(req, res) {
 export async function getMovieTrailers(req, res) {
   try {
     const { id, type } = req.params;
-    const url = `https://api.themoviedb.org/3/${type}/${id}/videos?language=en-US`;
+    const url = `https://api.themoviedb.org/3/${type}/${id}/videos?language=en-US&include_adult=false`;
     const data = await fetchFromTMDB(url);
-    res.json({ success: true, trailers: data.results });
+    res.json({ success: true, content: data.results });
   } catch (error) {
     if (error.response.status === 404) {
       return res.status(404).send(null);
@@ -50,9 +50,9 @@ export async function getMovieDetails(req, res) {
 export async function getSimilarMovies(req, res) {
   try {
     const { id, type } = req.params;
-    const url = `https://api.themoviedb.org/3/${type}/${id}/similar`;
+    const url = `https://api.themoviedb.org/3/${type}/${id}/similar?&include_adult=false`;
     const data = await fetchFromTMDB(url);
-    res.json({ success: true, similarMovies: data.results });
+    res.json({ success: true, content: data.results });
   } catch (error) {
     if (error.response?.status === 404) {
       return res.status(404).send(null);
@@ -68,7 +68,7 @@ export async function getMoviesByCategory(req, res) {
   try {
     const { category, type } = req.params;
 
-    const url = `https://api.themoviedb.org/3/${type}/${category}`;
+    const url = `https://api.themoviedb.org/3/${type}/${category}?include_adult=false`;
     const data = await fetchFromTMDB(url);
     res.status(200).json({ success: true, content: data.results });
   } catch (error) {
