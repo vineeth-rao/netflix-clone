@@ -2,8 +2,6 @@
 
 A Netflix-inspired web application built using the MERN stack, featuring movie and TV show browsing, authentication, and dynamic content fetching from **The Movie Database (TMDB) API**.
 ![image](https://github.com/user-attachments/assets/61f86b01-dd63-4e1c-b7b4-3698d7db6f37)
-![image](https://github.com/user-attachments/assets/22276354-869a-455b-bd98-f80bab291194)
-![image](https://github.com/user-attachments/assets/2b1f73b1-f5e3-4bcc-911c-02a77ea6fc22)
 
 ---
 
@@ -72,4 +70,18 @@ npm run dev
 ## **Step 5: Access the App in Your Browser**
 Once the server is running, open your browser and go to:
 [http://localhost:5173](http://localhost:5173/)
+
+---
+## **Screenshots**
+**HomePage**
+![image](https://github.com/user-attachments/assets/fc7100c9-ba97-4c8f-b7cc-42b8fd643b66)
+
+**Watch Trailers**
+![image](https://github.com/user-attachments/assets/7940bbb5-af8c-4379-ba28-aeb6dcf7114c)
+
+**Search Movie, TV Shows, People**
+![image](https://github.com/user-attachments/assets/22276354-869a-455b-bd98-f80bab291194)
+
+**Search History**
+![image](https://github.com/user-attachments/assets/2b1f73b1-f5e3-4bcc-911c-02a77ea6fc22)
 
