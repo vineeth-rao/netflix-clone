@@ -1,6 +1,9 @@
 # 🎬 Netflix Clone (MERN Stack)
 
 A Netflix-inspired web application built using the MERN stack, featuring movie and TV show browsing, authentication, and dynamic content fetching from **The Movie Database (TMDB) API**.
+![image](https://github.com/user-attachments/assets/61f86b01-dd63-4e1c-b7b4-3698d7db6f37)
+![image](https://github.com/user-attachments/assets/22276354-869a-455b-bd98-f80bab291194)
+![image](https://github.com/user-attachments/assets/2b1f73b1-f5e3-4bcc-911c-02a77ea6fc22)
 
 ---
 
