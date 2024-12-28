@@ -76,7 +76,7 @@ function HomeScreen() {
               <Play className="fill-black mr-2 size-6" /> Play
             </Link>
             <Link
-              to={"/watch/123"}
+              to={`/watch/${trendingContent.id}`}
               className="bg-gray-500/70  hover:bg-gray-500 font-bold text-white rounded  py-2 px-4 text-center flex items-center"
             >
               <Info className="mr-2 size-6" /> More Info
