@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <header className="max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20">
       <Link to={"/"} className="z-50">
-        <img src="/netflix-logo.png" alt="Logo" className="w-32 sm:w-40" />
+        <img src="/jetflix-logo.png" alt="Logo" className="w-32 sm:w-40" />
       </Link>
 
       {/* desktop menu */}
